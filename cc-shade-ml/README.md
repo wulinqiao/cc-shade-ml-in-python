@@ -31,12 +31,29 @@ cc-shade-ml  Philip/
 │       ├── benchmarks.py
 │       └── f1.py ~ f15.py
 └── cc-shade-ml/            # 本算法 / This algorithm
-    ├── constants.py
-    ├── header.py
-    ├── run_ccshademl.py
-    ├── test.py
+    ├── constants.py        # 随机数生成 / Random number generation
+    ├── header.py           # 算法核心工具函数 / Core algorithm utilities
+    ├── run_ccshademl.py    # 主运行入口 / Main runner
+    ├── test.py             # 单元测试 / Unit tests
     └── README.md
 ```
+
+`run_ccshademl.py` 的内部结构 / Internal structure of `run_ccshademl.py`:
+
+| 组件 / Component | 说明 / Description |
+|---|---|
+| `_TrialState` | 单次实验状态容器，封装全部工作数组 / State container encapsulating all working arrays |
+| `call_fun()` | 目标函数调用适配器 / Objective function call adapter |
+| `_allocate_arrays()` | 分配全部工作数组 / Allocate all working arrays |
+| `_setup_outer_cycle()` | 每轮外循环的变量分组和重置 / Variable grouping and reset per outer cycle |
+| `_init_subcomp_fitness()` | 初始化子分量适应度（构建上下文向量）/ Initialize subcomponent fitness |
+| `_mutate_crossover()` | 单个体的变异和交叉 / Mutation and crossover for one individual |
+| `_eval_and_select()` | 评估试验向量并贪心选择 / Evaluate trial vector and greedy selection |
+| `_run_subcomp_shade()` | 单子分量完整 SHADE 步骤 / Full SHADE step on one subcomponent |
+| `_run_outer_cycle()` | 组织一次完整外循环 / Orchestrate one complete outer cycle |
+| `_update_performance()` | 更新 ML 性能分数 / Update ML performance scores |
+| `run_one_trial()` | 公开接口，驱动完整实验 / Public interface, drives full trial |
+| `main()` | 命令行入口 / CLI entry point |
 
 ---
 
