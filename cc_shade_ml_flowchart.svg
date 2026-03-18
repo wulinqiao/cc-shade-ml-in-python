@@ -1,0 +1,100 @@
+<svg width="680" viewBox="0 0 680 860" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Background -->
+<rect width="680" height="860" fill="white"/>
+
+<!-- 1. Initialize -->
+<rect x="200" y="30" width="280" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="55" text-anchor="middle" dominant-baseline="central">Initialize</text>
+<text font-size="12" fill="#5F5E5A" x="340" y="75" text-anchor="middle" dominant-baseline="central">population + performance scores</text>
+
+<line x1="340" y1="86" x2="340" y2="106" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- 2. FEV > 0? -->
+<polygon points="340,106 420,126 340,146 260,126" fill="#F5F5F3" stroke="#444441" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="126" text-anchor="middle" dominant-baseline="central">FEV &gt; 0?</text>
+
+<line x1="340" y1="146" x2="340" y2="166" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="352" y="160">yes</text>
+
+<!-- FEV NO path (left side) -->
+<path d="M 260 126 L 155 126 L 155 786 L 200 786" fill="none" stroke="#B4B2A9" stroke-width="1" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="248" y="118" text-anchor="end">no</text>
+
+<!-- 3. [ML] Select M and pop_size -->
+<rect x="200" y="166" width="280" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#26215C" x="340" y="185" text-anchor="middle" dominant-baseline="central">Select M and pop_size</text>
+<text font-size="12" fill="#3C3489" x="340" y="206" text-anchor="middle" dominant-baseline="central">Boltzmann softmax, power=7</text>
+
+<line x1="340" y1="222" x2="340" y2="242" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- 4. [CC] Random variable grouping -->
+<rect x="200" y="242" width="280" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#04342C" x="340" y="261" text-anchor="middle" dominant-baseline="central">Random variable grouping</text>
+<text font-size="12" fill="#085041" x="340" y="282" text-anchor="middle" dominant-baseline="central">randperm, init subcomponent fitness</text>
+
+<line x1="340" y1="298" x2="340" y2="314" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- 5. fev_cycle > 0? -->
+<polygon points="340,314 420,334 340,354 260,334" fill="#F5F5F3" stroke="#444441" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="334" text-anchor="middle" dominant-baseline="central">fev_cycle &gt; 0?</text>
+
+<line x1="340" y1="354" x2="340" y2="374" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="352" y="368">yes</text>
+
+<!-- fev_cycle NO path (left side) -->
+<path d="M 260 334 L 175 334 L 175 670 L 200 670" fill="none" stroke="#B4B2A9" stroke-width="1" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="248" y="326" text-anchor="end">no</text>
+
+<!-- 6. [SHADE] Mutate each subcomponent -->
+<rect x="200" y="374" width="280" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#4A1B0C" x="340" y="393" text-anchor="middle" dominant-baseline="central">Mutate each subcomponent p</text>
+<text font-size="12" fill="#712B13" x="340" y="414" text-anchor="middle" dominant-baseline="central">current-to-pbest/1, binomial CR</text>
+
+<line x1="340" y1="430" x2="340" y2="450" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- 7. [SHADE] Evaluate + greedy select -->
+<rect x="200" y="450" width="280" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#4A1B0C" x="340" y="469" text-anchor="middle" dominant-baseline="central">Evaluate + greedy select</text>
+<text font-size="12" fill="#712B13" x="340" y="490" text-anchor="middle" dominant-baseline="central">context vector eval, update archive</text>
+
+<line x1="340" y1="506" x2="340" y2="526" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- 8. [SHADE] Update history memory -->
+<rect x="200" y="526" width="280" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#4A1B0C" x="340" y="545" text-anchor="middle" dominant-baseline="central">Update F/CR history memory</text>
+<text font-size="12" fill="#712B13" x="340" y="566" text-anchor="middle" dominant-baseline="central">Lehmer mean, Algorithm_1</text>
+
+<!-- Inner loop back (dashed, right side) -->
+<path d="M 480 554 L 512 554 L 512 334 L 420 334" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="520" y="452">repeat</text>
+
+<!-- 9. [ML] Update performance scores -->
+<rect x="200" y="642" width="280" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#26215C" x="340" y="661" text-anchor="middle" dominant-baseline="central">Update performance scores</text>
+<text font-size="12" fill="#3C3489" x="340" y="682" text-anchor="middle" dominant-baseline="central">gain / f_before, min 1e-4</text>
+
+<!-- Outer loop back (dashed, right side) -->
+<path d="M 480 670 L 548 670 L 548 126 L 420 126" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<text font-size="12" fill="#5F5E5A" x="556" y="396">new cycle</text>
+
+<!-- 10. Return results -->
+<rect x="200" y="758" width="280" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="777" text-anchor="middle" dominant-baseline="central">Return results</text>
+<text font-size="12" fill="#5F5E5A" x="340" y="798" text-anchor="middle" dominant-baseline="central">100 checkpoints + elapsed time</text>
+
+<!-- Legend -->
+<rect x="86" y="830" width="12" height="12" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text font-size="12" fill="#5F5E5A" x="102" y="836" dominant-baseline="central">Init/output</text>
+<rect x="196" y="830" width="12" height="12" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text font-size="12" fill="#3C3489" x="212" y="836" dominant-baseline="central">ML adaptation</text>
+<rect x="328" y="830" width="12" height="12" rx="2" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-size="12" fill="#085041" x="344" y="836" dominant-baseline="central">CC mechanism</text>
+<rect x="460" y="830" width="12" height="12" rx="2" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text font-size="12" fill="#712B13" x="476" y="836" dominant-baseline="central">SHADE optimizer</text>
+</svg>
